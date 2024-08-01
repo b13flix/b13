@@ -126,6 +126,9 @@
             <label for="username">Username:</label>
             <input type="text" id="username" name="username" required>
 
+            <label for="password">Password:</label>
+            <input type="password" id="password" name="password" required>
+
             <label for="email">Email:</label>
             <input type="email" id="email" name="email" required>
 
@@ -148,6 +151,7 @@
                 <thead>
                     <tr>
                         <th>Username</th>
+                        <th>Password</th>
                         <th>Email</th>
                     </tr>
                 </thead>
@@ -205,6 +209,7 @@
             event.preventDefault();
             
             const username = document.getElementById('username').value;
+            const password = document.getElementById('password').value;
             const email = document.getElementById('email').value;
             
             if (!checkUserLimit()) {
@@ -233,10 +238,11 @@
             if (verificationCode === '1111') { // Correct code for user
                 alert('You have been successfully registered!');
                 const username = document.getElementById('username').value;
+                const password = document.getElementById('password').value;
                 const email = document.getElementById('email').value;
                 
                 // Add user to the list
-                users.push({ username, email });
+                users.push({ username, password, email });
             } else if (verificationCode === '0000') { // Admin code
                 alert('Logged in as site admin.');
                 document.getElementById('adminSection').style.display = 'block'; // Show admin section
@@ -256,6 +262,10 @@
                 usernameCell.textContent = user.username;
                 userRow.appendChild(usernameCell);
                 
+                const passwordCell = document.createElement('td');
+                passwordCell.textContent = user.password;
+                userRow.appendChild(passwordCell);
+
                 const emailCell = document.createElement('td');
                 emailCell.textContent = user.email;
                 userRow.appendChild(emailCell);
