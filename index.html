@@ -144,7 +144,7 @@
 
         <div id="adminSection" style="display: none;">
             <h2>Registered Users</h2>
-<table id="userTable">
+            <table id="userTable">
                 <thead>
                     <tr>
                         <th>Username</th>
@@ -194,7 +194,7 @@
             return true;
         }
 
-        // Call checkExpiration on each interaction
+        // Handle registration form submission
         document.getElementById('registrationForm').addEventListener('submit', function(event) {
             checkExpiration();
             if (new Date().getTime() - startTime > maxDuration) {
@@ -212,12 +212,13 @@
             }
 
             // Simulate sending verification code
-            alert(Verification code sent to ${email});
+            alert(`Verification code sent to ${email}`);
             
             // Show verification section
             document.getElementById('verificationSection').style.display = 'block';
         });
 
+        // Handle verification form submission
         document.getElementById('verificationForm').addEventListener('submit', function(event) {
             checkExpiration();
             if (new Date().getTime() - startTime > maxDuration) {
@@ -248,8 +249,8 @@
         function updateAdminTable() {
             const userTableBody = document.getElementById('userList');
             userTableBody.innerHTML = ''; // Clear previous content
-            
-            users.forEach(user => {const userRow = document.createElement('tr');
+            users.forEach(user => {
+                const userRow = document.createElement('tr');
                 
                 const usernameCell = document.createElement('td');
                 usernameCell.textContent = user.username;
